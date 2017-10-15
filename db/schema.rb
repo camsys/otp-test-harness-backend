@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015002345) do
+ActiveRecord::Schema.define(version: 20171015011544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "itineraries", force: :cascade do |t|
+    t.boolean  "approved"
+    t.text     "raw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "trip_id"
+    t.index ["trip_id"], name: "index_itineraries_on_trip_id", using: :btree
+  end
 
   create_table "places", force: :cascade do |t|
     t.string   "description"
@@ -47,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171015002345) do
     t.index ["origin_id"], name: "index_trips_on_origin_id", using: :btree
   end
 
+  add_foreign_key "itineraries", "trips"
   add_foreign_key "trips", "places", column: "destination_id"
   add_foreign_key "trips", "places", column: "origin_id"
 end
