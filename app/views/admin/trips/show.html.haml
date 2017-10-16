@@ -1,0 +1,87 @@
+%h1.text-center
+  ="#{@trip.set_name}:#{@trip.row_number}"
+
+.row
+  .col-md-2
+  .col-md-8
+    .well
+      -if @trip.approved
+        Trip Approved
+        %i.fa.fa-check
+      -elsif @trip.approved == false
+        Trip Not Approved
+        %i.fa.fa-close
+      -else
+        Trip Approval Pending
+.row
+  .col-md-2
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Origin
+      .panel-body
+        .row
+          =@trip.origin.description
+        .row
+          ="#{@trip.origin.lat},#{@trip.origin.lng}"
+        .row
+          -if @trip.origin.approved
+            Approved
+            %i.fa.fa-check
+          -elsif @trip.origin.approved == false
+            Not Approved
+            %i.fa.fa-close
+          -else
+            Approval Pending  
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Destination
+      .panel-body
+        .row
+          =@trip.destination.description
+        .row
+          ="#{@trip.destination.lat},#{@trip.destination.lng}"
+        .row
+          -if @trip.destination.approved
+            Approved
+            %i.fa.fa-check
+          -elsif @trip.destination.approved == false
+            Not Approved
+            %i.fa.fa-close
+          -else
+            Approval Pending  
+.row
+  .col-md-2
+  .col-md-8
+    .panel.panel-default
+      .panel-heading
+        URL
+      .panel-body
+        =@trip.request_url
+
+.row
+  %h2.text-center
+    Itineraries
+  .col-md-2
+  .col-md-8
+    -@trip.itineraries.each do |itin|
+      .panel.panel-default
+        .panel-heading
+          ="Itinerary #{itin.id}"
+        .panel-body
+          .row
+            -if itin.approved
+              Approved
+              %i.fa.fa-check
+            -elsif itin.approved == false
+              Not Approved
+              %i.fa.fa-close
+            -else
+              Approval Pending  
+          .row
+            =itin.raw    
+      
+    
+
+
