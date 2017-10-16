@@ -25,6 +25,8 @@
         .row
           ="#{@trip.origin.lat},#{@trip.origin.lng}"
         .row
+          =@trip.origin.google_place_id
+        .row
           -if @trip.origin.approved
             Approved
             %i.fa.fa-check
@@ -42,6 +44,8 @@
           =@trip.destination.description
         .row
           ="#{@trip.destination.lat},#{@trip.destination.lng}"
+        .row
+          =@trip.destination.google_place_id
         .row
           -if @trip.destination.approved
             Approved
