@@ -8,10 +8,15 @@ module Api
 
       def create
         @trip = Trip.new(trip_params)
-        @trip.origin = Place.create!(origin_params)
-        @trip.destination = Place.create!(destination_params)
+        @trip.origin = Place.create!(origin_params["origin"])
+        @trip.destination = Place.create!(destination_params["destination"])
 
         if @trip.save
+          itineraries_params["itineraries"].each do |itin|
+            new_itinerary = Itinerary.new(itin)
+            new_itinerary.trip = @trip
+            new_itinerary.save 
+          end
           render json: @trip
         else
           render json: nil
@@ -30,11 +35,15 @@ module Api
       end
 
       def origin_params
-        params.require(:origin).permit(:approved, :lat, :lng, :description, :google_place_id)
+        params.permit(origin: [:approved, :lat, :lng, :description, :google_place_id])
       end
 
       def destination_params
-        params.require(:destination).permit(:approved, :lat, :lng, :description, :google_place_id)
+        params.permit(destination: [:approved, :lat, :lng, :description, :google_place_id])
+      end
+
+      def itineraries_params
+        params.permit(itineraries: [:approved, :raw])
       end
 
     end
