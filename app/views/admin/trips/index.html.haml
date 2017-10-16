@@ -1,0 +1,50 @@
+%h1.text-center
+  Trips
+
+-@trips.each do |trip|
+  .row
+    .col-md-3
+    .col-md-6
+      =link_to(admin_trip_path(trip)) do
+        .well
+          .row 
+            .col-md-2
+              =trip.id
+              -if trip.approved
+                %i.fa.fa-check
+              -elsif trip.approved == false
+                %i.fa.fa-close
+              -else
+                %i.fa.fa-question
+            .col-md-2
+              ="#{trip.set_name}:#{trip.row_number}"
+            .col-md-5
+              .row
+                ="Origin: #{trip.origin.description}"
+                -if trip.origin.approved
+                  %i.fa.fa-check
+                -elsif trip.origin.approved == false
+                  %i.fa.fa-close
+                -else
+                  %i.fa.fa-question
+              .row
+                ="Destination: #{trip.destination.description}"
+                -if trip.destination.approved
+                  %i.fa.fa-check
+                -elsif trip.destination.approved == false
+                  %i.fa.fa-close
+                -else
+                  %i.fa.fa-question
+            .col-md-3
+              .row
+                Itineraries
+              .row
+                -trip.itineraries.each do |itin|
+                  -if itin.approved
+                    %i.fa.fa-check
+                  -elsif itin.approved == false
+                    %i.fa.fa-close
+                  -else
+                    %i.fa.fa-question
+
+
