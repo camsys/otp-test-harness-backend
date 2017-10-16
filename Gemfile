@@ -11,6 +11,10 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 ### Formatting ########################
 gem 'awesome_print' 
+gem 'haml-rails'
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.6'
