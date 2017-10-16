@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
     ### API V1 ###
     namespace :v1 do
-      resources :trips, only: [:index]
+      resources :trips, only: [:index, :create]
     end
   end
 end
