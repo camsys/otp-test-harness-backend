@@ -15,11 +15,21 @@ module Api
       end
 
       def create
-        @trip = Trip.new(trip_params)
+        if params[:id]
+          @trip = Trip.find(params[:id]) || Trip.new 
+        elsif params[:set_name] and params[:row_number]
+          @trip = Trip.find_by(set_name: params[:set_name], row_number: params[:row_number]) || Trip.new
+        else
+          @trip = Trip.new
+        end
+        @trip.assign_attributes(trip_params)
         @trip.origin = Place.create!(origin_params["origin"])
         @trip.destination = Place.create!(destination_params["destination"])
 
         if @trip.save
+          if itineraries_params["itineraries"].count > 0 
+            @trip.itineraries.destroy_all
+          end
           itineraries_params["itineraries"].each do |itin|
             new_itinerary = Itinerary.new(itin)
             new_itinerary.trip = @trip
