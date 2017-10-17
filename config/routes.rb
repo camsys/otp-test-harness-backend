@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     ### API V1 ###
     namespace :v1 do
-      resources :trips, only: [:index, :create]
+      resources :trips, only: [:index, :create, :show]
     end
   end
 

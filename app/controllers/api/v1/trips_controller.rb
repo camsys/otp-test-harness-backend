@@ -22,6 +22,10 @@ module Api
           render json: nil
         end
       end
+
+      def show
+        render json: Trip.find_by_id(params[:id]) 
+      end
       
       protected
       
