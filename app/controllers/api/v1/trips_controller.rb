@@ -3,7 +3,15 @@ module Api
     class TripsController < ApiController
 
       def index
-        render json: Trip.all 
+        if params[:set_name]
+          if params[:row_number]
+            render json: Trip.where(row_number: params[:row_number], set_name: params[:set_name])
+          else
+            render json: Trip.where(set_name: params[:set_name])
+          end  
+        else
+          render json: Trip.all 
+        end
       end
 
       def create
