@@ -11,5 +11,20 @@ module OtpTestHarnessBackend
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    
+    # Set default CORS settings
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*' # /http:\/\/localhost:(\d*)/
+        resource '*',
+          # headers: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept',
+          #   'Authorization', 'X-User-Token', 'X-User-Email',
+          #   'Access-Control-Request-Headers', 'Access-Control-Request-Method'
+          # ],
+          headers: :any, # fixes CORS errors on OPTIONS requests
+          methods: [:get, :post, :put, :delete, :options]
+        end
+    end
+
   end
 end

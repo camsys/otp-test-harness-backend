@@ -115,6 +115,7 @@ GEM
     pg (0.21.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-cors (1.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.6)
@@ -210,6 +211,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.0.6)
   sass-rails (~> 5.0)
   simple_form
