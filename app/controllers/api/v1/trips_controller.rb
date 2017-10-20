@@ -15,6 +15,8 @@ module Api
       end
 
       def create
+
+        puts params.ai 
         if params[:id]
           @trip = Trip.find(params[:id]) || Trip.new 
         elsif params[:set_name] and params[:row_number]
