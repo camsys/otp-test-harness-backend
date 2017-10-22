@@ -21,40 +21,48 @@
         Origin
       .panel-body
         .row
-          =@trip.origin.description
+          .col-md-12
+            =@trip.origin.description
         .row
-          ="#{@trip.origin.lat},#{@trip.origin.lng}"
+          .col-md-12
+            ="#{@trip.origin.lat},#{@trip.origin.lng}"
         .row
-          =@trip.origin.google_place_id
+          .col-md-12
+            =@trip.origin.google_place_id
         .row
-          -if @trip.origin.approved
-            Approved
-            %i.fa.fa-check
-          -elsif @trip.origin.approved == false
-            Not Approved
-            %i.fa.fa-close
-          -else
-            Approval Pending  
+          .col-md-12
+            -if @trip.origin.approved
+              Approved
+              %i.fa.fa-check
+            -elsif @trip.origin.approved == false
+              Not Approved
+              %i.fa.fa-close
+            -else
+              Approval Pending  
   .col-md-4
     .panel.panel-default
       .panel-heading
         Destination
       .panel-body
         .row
-          =@trip.destination.description
+          .col-md-12
+            =@trip.destination.description
         .row
-          ="#{@trip.destination.lat},#{@trip.destination.lng}"
+          .col-md-12
+            ="#{@trip.destination.lat},#{@trip.destination.lng}"
         .row
-          =@trip.destination.google_place_id
+          .col-md-12
+            =@trip.destination.google_place_id
         .row
-          -if @trip.destination.approved
-            Approved
-            %i.fa.fa-check
-          -elsif @trip.destination.approved == false
-            Not Approved
-            %i.fa.fa-close
-          -else
-            Approval Pending  
+          .col-md-12
+            -if @trip.destination.approved
+              Approved
+              %i.fa.fa-check
+            -elsif @trip.destination.approved == false
+              Not Approved
+              %i.fa.fa-close
+            -else
+              Approval Pending  
 .row
   .col-md-2
   .col-md-8
@@ -62,7 +70,8 @@
       .panel-heading
         URL
       .panel-body
-        =@trip.request_url
+        %pre
+          =@trip.request_url
 
 .row
   %h2.text-center
@@ -75,16 +84,19 @@
           ="Itinerary #{itin.id}"
         .panel-body
           .row
-            -if itin.approved
-              Approved
-              %i.fa.fa-check
-            -elsif itin.approved == false
-              Not Approved
-              %i.fa.fa-close
-            -else
-              Approval Pending  
+            .col-md-12
+              -if itin.approved
+                Approved
+                %i.fa.fa-check
+              -elsif itin.approved == false
+                Not Approved
+                %i.fa.fa-close
+              -else
+                Approval Pending  
           .row
-            =itin.raw    
+            .col-md-12
+              %pre
+                =itin.raw    
       
     
 

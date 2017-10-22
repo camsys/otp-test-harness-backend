@@ -7,18 +7,17 @@
     .col-md-6
       =link_to(admin_trip_path(trip)) do
         .well
-          .row 
-            .col-md-2
-              =trip.id
+          .row
+            %h4
               -if trip.approved
                 %i.fa.fa-check
               -elsif trip.approved == false
                 %i.fa.fa-close
               -else
                 %i.fa.fa-question
-            .col-md-2
               ="#{trip.set_name}:#{trip.row_number}"
-            .col-md-5
+          .row           
+            .col-md-6
               .row
                 ="Origin: #{trip.origin.description}"
                 -if trip.origin.approved
@@ -35,7 +34,7 @@
                   %i.fa.fa-close
                 -else
                   %i.fa.fa-question
-            .col-md-3
+            .col-md-6
               .row
                 Itineraries
               .row
