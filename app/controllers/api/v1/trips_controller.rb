@@ -31,7 +31,7 @@ module Api
           if itineraries_params["itineraries"].count > 0 
             @trip.itineraries.destroy_all
           end
-          itineraries_params["itineraries"].each do |itin|
+          itineraries_params["itineraries"].each do |key, itin|
             new_itinerary = Itinerary.new(itin)
             new_itinerary.trip = @trip
             new_itinerary.save 
