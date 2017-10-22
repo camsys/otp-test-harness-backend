@@ -6,4 +6,7 @@ class Trip < ApplicationRecord
   accepts_nested_attributes_for :origin
   accepts_nested_attributes_for :destination
 
+  scope :approved, -> { where(approved: true)}
+  scope :not_approved, -> { where(approved: false) }
+
 end
