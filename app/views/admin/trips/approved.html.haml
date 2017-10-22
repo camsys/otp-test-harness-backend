@@ -1,0 +1,13 @@
+%h1.text-center
+  Approved Trips
+%h4
+  .row
+    .col-md-3
+    .col-md-3.text-center
+      =link_to(admin_trips_path) do
+        View All Trips
+    .col-md-3.text-center
+      =link_to(not_approved_admin_trips_path) do
+        View Not Approved Trips
+
+=render partial: 'shared_index'
