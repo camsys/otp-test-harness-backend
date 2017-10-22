@@ -31,8 +31,12 @@ module Api
           if itineraries_params["itineraries"].count > 0 
             @trip.itineraries.destroy_all
           end
+
           itineraries_params["itineraries"].each do |key, itin|
-            new_itinerary = Itinerary.new(itin)
+            # TODO when it isn't midnight the day before a deadline, do this better withs strong params
+            new_itinerary = Itinerary.new()
+            new_itinerary.raw = itin["raw"]
+            new_itinerary.approved = itin["approved"]
             new_itinerary.trip = @trip
             new_itinerary.save 
           end
